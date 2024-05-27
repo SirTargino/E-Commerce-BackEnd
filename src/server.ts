@@ -1,11 +1,12 @@
 import express from "express";
-import { connectToDatabase } from "./database/connection";
+import AppDataSource from "./data-source";
 
-const port = process.env.port;
+const port:number = Number(process.env.PORT);
 
 const app = express();
 
-app.listen(port, async () => {
-    connectToDatabase();
-    console.log(`Server run on port ${port}`)
+app.listen(port, () => {
+    AppDataSource.initialize().then(async () => {
+        console.log(`Server running on http://localhost:${port}`);
+    }).catch(error => console.log(error))
 });
