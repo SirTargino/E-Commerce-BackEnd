@@ -1,7 +1,8 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Order } from "./Order.entity";
 
 @Entity('products')
-export class Product{
+export class Product {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
@@ -20,4 +21,7 @@ export class Product{
         nullable: false
     })
     price: number;
+
+    @ManyToMany(() => Order, order => order.products)
+    orders: Order[];
 }
