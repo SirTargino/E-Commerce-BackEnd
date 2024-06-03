@@ -3,16 +3,16 @@ import { Costumer } from "./Costumer.entity";
 import { Product } from "./Product.entity";
 
 @Entity('orders')
-export class Order{
+export class Order {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
-    @ManyToOne(()=> Costumer, costumer => costumer.orders)
+    @ManyToOne(() => Costumer, costumer => costumer.orders)
     @JoinColumn({ name: 'customerId' })
     costumer: Costumer;
 
-    @ManyToMany(()=> Product)
-    @JoinTable({name: 'order_products'})
+    @ManyToMany(() => Product)
+    @JoinTable({ name: 'order_products' })
     products: Product[];
 
     @Column({
@@ -30,4 +30,9 @@ export class Order{
         nullable: false
     })
     total_value: Number;
+
+    @Column({
+        nullable: false
+    })
+    status: string;
 }
