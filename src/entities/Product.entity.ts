@@ -22,6 +22,6 @@ export class Product {
     })
     price: number;
 
-    @ManyToMany(() => Order, order => order.products)
+    @ManyToMany(() => Order, order => order.products, { cascade: true })
     orders: Order[];
 }
