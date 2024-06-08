@@ -9,7 +9,9 @@ dotenv.config();
 const AppDataSource = new DataSource({
   type: 'postgres',
   url: String(process.env.DB_URL),
-  migrations: [],
+  synchronize: false,
+  logging: true,
+  migrations: ["./migrations/*.ts"],
   entities: [Costumer, Order, Product]
 });
 
